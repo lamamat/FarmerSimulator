@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Plant_Data : MonoBehaviour
@@ -8,14 +5,42 @@ public class Plant_Data : MonoBehaviour
     public enum PlantStage{
         Seed,
         Growing,
-        Harvest
+        Harvest , // can harvest
+        Dead
     }
 
-    public Plant_Scriptable plantData;
+    public Seed_Scriptable SeedData;
     [SerializeField] private PlantStage _plantStage;
     [SerializeField] private int currentDay;
     [SerializeField] private bool isWatered;
 
+    void OnEnable()
+    {
+        Time_Manager.OnNewMorning += HandleOnNewMorning;
+    }
 
-    
+    void OnDisable()
+    {
+        Time_Manager.OnNewMorning -= HandleOnNewMorning;
+    }
+
+    private void HandleOnNewMorning()
+    {
+        Grow();
+    }   
+
+    private void Grow(){
+        if(_plantStage == PlantStage.Dead || _plantStage == PlantStage.Growing) return;
+
+        if(!isWatered && SeedData.WaterNeeded) _plantStage = PlantStage.Dead;
+
+        if(_plantStage == PlantStage.Seed){
+            _plantStage = PlantStage.Growing;
+        }
+        else if(_plantStage == PlantStage.Growing){
+            _plantStage = PlantStage.Harvest;
+        }
+
+        Debug.Log("Plant is now at stage: " + _plantStage);
+    }
 }

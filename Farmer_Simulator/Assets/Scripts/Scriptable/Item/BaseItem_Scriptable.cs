@@ -8,4 +8,8 @@ public class BaseItem_Scriptable : ScriptableObject
     public string Name;
     public string Description;
 
+    public virtual string getID(){
+        return ID;
+    }
+
 }

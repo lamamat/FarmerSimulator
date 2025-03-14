@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb3c60c4b6aecd49bbe884345309ecc, type: 3}
-  m_Name: Banana
+  m_Script: {fileID: 11500000, guid: 2b677ae72bbd89d48b540eb93280482a, type: 3}
+  m_Name: WaterMelon
   m_EditorClassIdentifier: 
-  ID: 002
-  Name: Banana
-  Description: Banana
-  GrowDay: 4
-  SellPrice: 15
-  BuyPrice: 10
+  ID: 1
+  Name: 
+  Description: 
+  SellPrice: 0
+  BuyPrice: 0
+  spoilDay: 0
+  canSpoil: 0
+  plantPrefab: {fileID: 0}

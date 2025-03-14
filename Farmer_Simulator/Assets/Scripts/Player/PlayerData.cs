@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,8 +22,13 @@ public class PlayerData : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            CollectItem(FindAnyObjectByType<Plant_Data>().plantData);
+            CollectItem(FindAnyObjectByType<Plant_Data>().SeedData);
         }
+    }
+
+    internal void AddItemToInventory(BaseItem_Scriptable item)
+    {
+        CollectItem(item);
     }
 
     #region Inventory (Collect , remove)
@@ -39,7 +45,7 @@ public class PlayerData : MonoBehaviour
 
         for (int i = 0; i < _inventory.Count; i++)
         {
-            if (_inventory[i].ID == item.ID)
+            if (_inventory[i].ID == item.getID())
             {
                 Debug.Log("Already have this item: " + item.name);
                 _inventory[i].Amount++;
@@ -52,7 +58,7 @@ public class PlayerData : MonoBehaviour
         if (!itemFound)
         {
             Debug.Log("Add new item: " + item.name);
-            ConvertToInventory(item.ID);
+            ConvertToInventory(item.getID());
             Debug.Log("Collect Item: " + item.name);
         }
     }
@@ -64,7 +70,7 @@ public class PlayerData : MonoBehaviour
         }
         if(_inventory.Count > 0){
             for(int i = 0; i < _inventory.Count; i++){
-                if(_inventory[i].ID == item.ID){
+                if(_inventory[i].ID == item.getID()){
                     _inventory[i].Amount--;
                     if(_inventory[i].Amount <= 0){
                         _inventory.RemoveAt(i);
@@ -82,7 +88,7 @@ public class PlayerData : MonoBehaviour
         }
         if(_inventory.Count > 0){
             for(int i = 0; i < _inventory.Count; i++){
-                if(_inventory[i].ID == item.ID){
+                if(_inventory[i].ID == item.getID()){
                     _inventory.RemoveAt(i);
                     break;
                 }
