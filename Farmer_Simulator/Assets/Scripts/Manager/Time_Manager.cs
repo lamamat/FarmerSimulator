@@ -26,10 +26,18 @@ public class Time_Manager : MonoBehaviour
     public static event Action OnNight;
     public static event Action OnMidnight;
 
+    private int currentDayCount = 1;
+
     private float timeElapsed = 0f;
     private float currentStageDuration;
 
     private DaynNight daynNight;
+
+    public int _CurrentDayCount{
+        get{
+            return currentDayCount;
+        }
+    }
 
     public float GetCurrentTimeElapsed()
     {
@@ -100,6 +108,7 @@ public class Time_Manager : MonoBehaviour
         else if (currentTimeStage == timeStage.Midnight)
         {
             currentTimeStage = timeStage.Morning;
+            currentDayCount++;
             currentStageDuration = dayDurationMinutes * 60f; // Daytime duration
 
             // Trigger the new morning event

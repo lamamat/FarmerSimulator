@@ -2,12 +2,14 @@ using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FindDataItem : MonoBehaviour
+public class FindDataItem : SingletonClass<FindDataItem>
 {
     public List<Data> items = new List<Data>();
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        
         // Find all BaseItem_Scriptable assets in the project
         string[] guids = AssetDatabase.FindAssets("t:BaseItem_Scriptable");
         foreach (string guid in guids)

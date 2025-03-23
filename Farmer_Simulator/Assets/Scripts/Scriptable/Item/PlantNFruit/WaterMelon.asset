@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: WaterMelon
   m_EditorClassIdentifier: 
   ID: 1
-  Name: 
-  Description: 
-  SellPrice: 0
-  BuyPrice: 0
-  spoilDay: 0
-  canSpoil: 0
+  Name: WaterMelon
+  Description: WaterMelon
+  SellPrice: 20
+  BuyPrice: 10
+  spoilDay: 5
+  canSpoil: 1
   plantPrefab: {fileID: 0}

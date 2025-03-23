@@ -11,6 +11,7 @@ public class Time_Manager_Editor : Editor {
             EditorGUILayout.LabelField("Runtime Information", EditorStyles.boldLabel);
             EditorGUILayout.LabelField($"Current Time Stage: {timeManager.currentTimeStage}");
             EditorGUILayout.LabelField($"Time Elapsed (seconds): {timeManager.GetCurrentTimeElapsed()}");
+            EditorGUILayout.LabelField($"Day Count : {timeManager._CurrentDayCount}");
         }
 
         // Draw the default Inspector GUI
