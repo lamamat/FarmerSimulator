@@ -31,6 +31,14 @@ public class PlayerData : MonoBehaviour
         CollectItem(item);
     }
 
+    public void AddMoney(int amount){
+        _money += amount;
+    }
+
+    public void SubtractMoney(int amount){
+        _money -= amount;
+    }
+
     #region Inventory (Collect , remove)
     // collect item on hand
     public void CollectItemOnHand(){

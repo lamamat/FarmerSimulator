@@ -4,27 +4,17 @@ using UnityEngine;
 
 public class Game_Manager : SingletonClass<Game_Manager>
 {
-    private Time_Manager time;
     private FindDataItem findDataItem;
+    internal PlayerData playerData;
 
     void Start()
     {
-        time = GetComponent<Time_Manager>();
         findDataItem = GetComponent<FindDataItem>();
-
+        playerData = FindObjectOfType<PlayerData>();
 
         // Test add item to player
         findDataItem.AddItemToPlayer("01",FindObjectOfType<PlayerData>());
         findDataItem.AddItemToPlayer("02",FindObjectOfType<PlayerData>());
         findDataItem.AddItemToPlayer("11",FindObjectOfType<PlayerData>());
-    }
-
-
-
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)){
-            time.SwitchTimeStage();
-        }
     }
 }

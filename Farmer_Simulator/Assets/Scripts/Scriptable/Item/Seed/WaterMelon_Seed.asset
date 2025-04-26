@@ -21,3 +21,10 @@ MonoBehaviour:
   WaterNeeded: 1
   SeedPrefab: {fileID: 0}
   product: {fileID: 11400000, guid: 4b19f45fdc7753f4e8b0fa6daf4ff486, type: 2}
+  growStates:
+  - stateName: Seed
+    plantPrefab: {fileID: 0}
+  - stateName: Growing
+    plantPrefab: {fileID: 0}
+  - stateName: Harvest
+    plantPrefab: {fileID: 0}

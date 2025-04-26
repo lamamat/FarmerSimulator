@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,16 @@ public class Seed_Scriptable : BaseItem_Scriptable
 
     public PlantNFruit_Scriptable product;
 
+    public List<GrowState> growStates = new List<GrowState>();
+
     public override string getID()
     {
         return "0" + ID;
     }
+}
+
+[Serializable]
+public class GrowState{
+    public string stateName;
+    public GameObject plantPrefab;
 }
