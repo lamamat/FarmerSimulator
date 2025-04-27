@@ -7,14 +7,21 @@ public class Plant_Data : MonoBehaviour , CanWatered
         Growing,
         Harvest , // can harvest
         Dead ,
+        Infected,
         None // no plant
     }
-
     public Seed_Scriptable SeedData;
     [SerializeField] private PlantStage _plantStage;
     [SerializeField] private int currentDay;
     [SerializeField] private bool isWatered;
     [SerializeField] private Transform plantLocation; // location to plant the seed
+
+    [Header("Infect")]
+    [SerializeField] private bool isInfected;
+
+    [Tooltip("Infect Chance Rate Chance to infect the plant 0 is no chance 1 is 100% chance")]
+    [SerializeField] [Range(0f,1f)] private float infectChanceRate; // chance to infect the plant
+
     private GameObject plantPrefab; // prefab of the plant
 
     private FindDataItem findDataItem;
@@ -38,20 +45,61 @@ public class Plant_Data : MonoBehaviour , CanWatered
     private void HandleOnNewMorning()
     {
         Grow();
-    }   
+        plantInfect();
+    }  
 
-    // Water the plant
-    public void Watered(){
-        isWatered = true;
+    private void Grow(){
+        if(_plantStage == PlantStage.Dead || _plantStage == PlantStage.Harvest) return;
+
+        if(!isWatered && SeedData.WaterNeeded || _plantStage == PlantStage.Infected) _plantStage = PlantStage.Dead;
+
+        currentDay++;
+        isWatered = false; // Reset watering status for the next day
+
+        if(_plantStage == PlantStage.Seed){
+            _plantStage = PlantStage.Growing;
+        }
+        else if(_plantStage == PlantStage.Growing && currentDay >= SeedData.GrowDay){
+            _plantStage = PlantStage.Harvest;
+        }
+
+
+        Debug.Log("Plant is now at stage: " + _plantStage);
     }
 
-    // Plant the seed
-    public void PlantSeed(Seed_Scriptable seedData){
-        SeedData = seedData;
-        Game_Manager.instance.playerData.SubtractMoney(SeedData.BuyPrice); // Subtract money when planting the seed
-        _plantStage = PlantStage.Seed;
-        currentDay = 0;
-        isWatered = false; // Reset watering status for the new seed
+    // Infect the plant
+    private void plantInfect(){
+        if(_plantStage == PlantStage.Growing){
+            float randomValue = Random.Range(0f, 1f);
+            if(randomValue <= infectChanceRate){
+                isInfected = true;
+                Debug.Log("Plant is infected!");
+                _plantStage = PlantStage.Infected;
+            }
+        }
+    }
+
+    //Update the plant prefab based on the current stage
+    private void ChangeGameObj(int index){
+        if(plantPrefab == null) plantPrefab = SeedData.growStates[index].plantPrefab;
+        else if(plantPrefab != null){
+            if (plantLocation.childCount > 0) {
+                Destroy(plantLocation.GetChild(0).gameObject); // Destroy the old plant prefab
+                plantPrefab = null;
+            }
+            plantPrefab = SeedData.growStates[index].plantPrefab;
+            GameObject newPlant = Instantiate(plantPrefab, plantLocation.position, Quaternion.identity, plantLocation);
+            newPlant.transform.localPosition = Vector3.zero; // Set position to zero
+        }
+    }
+
+    #region for Gun
+    // Cure the plant
+    public void PlantCure(){
+        if(_plantStage == PlantStage.Infected){
+            isInfected = false;
+            _plantStage = PlantStage.Growing;
+        }
     }
 
     // Harvest the plant
@@ -78,35 +126,19 @@ public class Plant_Data : MonoBehaviour , CanWatered
         }
     }
 
-    private void Grow(){
-        if(_plantStage == PlantStage.Dead || _plantStage == PlantStage.Harvest) return;
-
-        if(!isWatered && SeedData.WaterNeeded) _plantStage = PlantStage.Dead;
-
-        currentDay++;
-        isWatered = false; // Reset watering status for the next day
-
-        if(_plantStage == PlantStage.Seed){
-            _plantStage = PlantStage.Growing;
-        }
-        else if(_plantStage == PlantStage.Growing && currentDay >= SeedData.GrowDay){
-            _plantStage = PlantStage.Harvest;
-        }
-
-
-        Debug.Log("Plant is now at stage: " + _plantStage);
+    // Water the plant
+    public void Watered(){
+        isWatered = true;
     }
 
-    private void ChangeGameObj(int index){
-        if(plantPrefab == null) plantPrefab = SeedData.growStates[index].plantPrefab;
-        else if(plantPrefab != null){
-            if (plantLocation.childCount > 0) {
-                Destroy(plantLocation.GetChild(0).gameObject); // Destroy the old plant prefab
-                plantPrefab = null;
-            }
-            plantPrefab = SeedData.growStates[index].plantPrefab;
-            GameObject newPlant = Instantiate(plantPrefab, plantLocation.position, Quaternion.identity, plantLocation);
-            newPlant.transform.localPosition = Vector3.zero; // Set position to zero
-        }
+    // Plant the seed
+    public void PlantSeed(Seed_Scriptable seedData){
+        SeedData = seedData;
+        Game_Manager.instance.playerData.SubtractMoney(SeedData.BuyPrice); // Subtract money when planting the seed
+        _plantStage = PlantStage.Seed;
+        currentDay = 0;
+        isWatered = false; // Reset watering status for the new seed
     }
+
+    #endregion
 }
