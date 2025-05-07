@@ -26,25 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 948bcdd9879ef114abf08e4eb32d3f8a,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant04/plat4_01idle.prefab
       value: 0
-=======
-      value: 2.9829998
->>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/idle_plant4_01.prefab
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 948bcdd9879ef114abf08e4eb32d3f8a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.909
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 948bcdd9879ef114abf08e4eb32d3f8a,
         type: 3}
       propertyPath: m_LocalPosition.z
-<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant04/plat4_01idle.prefab
       value: 0
-=======
-      value: -10.319
->>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/idle_plant4_01.prefab
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 948bcdd9879ef114abf08e4eb32d3f8a,
         type: 3}

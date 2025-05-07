@@ -70,6 +70,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
 
     private void HandleOnNewMorning()
     {
+        if(_plantStage == PlantStage.None) return; // No seed planted
         Grow();
         plantInfect();
     }  
