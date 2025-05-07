@@ -11,37 +11,45 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.49999997
+      value: 0.24131836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.49999997
+      value: 0.24131836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.49999997
+      value: 0.24131836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant01/plat1_03idle.prefab
       value: 0
+=======
+      value: 1.1785
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat1_03idle.prefab
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.845
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant01/plat1_03idle.prefab
       value: 0
+=======
+      value: -13.805
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat1_03idle.prefab
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
@@ -51,7 +59,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
@@ -66,7 +74,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
@@ -190,7 +198,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       insertIndex: -1
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant01/plat1_03idle.prefab
       addedObject: {fileID: -1836800109216756299}
+=======
+      addedObject: {fileID: 3172777096205204228}
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat1_03idle.prefab
     - targetCorrespondingSourceObject: {fileID: -7586097029431534954, guid: 5b38d773ee68d3042930375fedb03748,
         type: 3}
       insertIndex: -1
@@ -229,13 +241,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3602222331454100974}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant01/plat1_03idle.prefab
 --- !u!65 &-1836800109216756299
 BoxCollider:
+=======
+--- !u!95 &3172777096205204228
+Animator:
+  serializedVersion: 5
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat1_03idle.prefab
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4412617178533079231}
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant01/plat1_03idle.prefab
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -250,3 +269,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+=======
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2689671b385cdf04bb3667647f41be27, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat1_03idle.prefab

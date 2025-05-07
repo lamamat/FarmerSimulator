@@ -11,52 +11,60 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.49999997
+      value: 0.36666584
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.49999997
+      value: 0.36666584
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.49999997
+      value: 0.36666584
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant03/plat3_01idle.prefab
       value: 0
+=======
+      value: 1.723
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat3_01idle (1).prefab
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.844
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plant03/plat3_01idle.prefab
       value: 0
+=======
+      value: -10.875
+>>>>>>> 5f534faa2ce4ad77d6d04eaacdc62a3bd89b69d8:Farmer_Simulator/Assets/Big/space/Prefab/Plant with Animation/plat3_01idle (1).prefab
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7261739
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.6875111
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
@@ -66,7 +74,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -86.867
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef0ef1c1420e22419b956c1db745766,
         type: 3}
