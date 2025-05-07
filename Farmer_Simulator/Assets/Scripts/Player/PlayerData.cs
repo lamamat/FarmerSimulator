@@ -10,10 +10,6 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private int _money; // player money
     [SerializeField] private List<InventoryData> _inventory; // player inventory
 
-    [Header("Player Info")]
-    [SerializeField] private GameObject leftHand;
-    [SerializeField] private GameObject rightHand;
-
     public int Money{get{return _money;} set{_money = value;}}
     public List<InventoryData> Inventory{get{return _inventory;} set{_inventory = value;}}
 
@@ -21,9 +17,9 @@ public class PlayerData : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            CollectItem(FindAnyObjectByType<Plant_Data>().SeedData);
-        }
+        // if(Input.GetKeyDown(KeyCode.Space)){
+        //     CollectItem(FindAnyObjectByType<Plant_Data>().SeedData);
+        // }
     }
 
     internal void AddItemToInventory(BaseItem_Scriptable item)
@@ -38,7 +34,7 @@ public class PlayerData : MonoBehaviour
     public void SubtractMoney(int amount){
         _money -= amount;
     }
-
+    
     #region Inventory (Collect , remove)
     // collect item on hand
     public void CollectItemOnHand(){

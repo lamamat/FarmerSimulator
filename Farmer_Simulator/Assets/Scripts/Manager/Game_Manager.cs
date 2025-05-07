@@ -13,8 +13,8 @@ public class Game_Manager : SingletonClass<Game_Manager>
         playerData = FindObjectOfType<PlayerData>();
 
         // Test add item to player
-        findDataItem.AddItemToPlayer("01",FindObjectOfType<PlayerData>());
-        findDataItem.AddItemToPlayer("02",FindObjectOfType<PlayerData>());
-        findDataItem.AddItemToPlayer("11",FindObjectOfType<PlayerData>());
+        // findDataItem.AddItemToPlayer("01",FindObjectOfType<PlayerData>());
+        // findDataItem.AddItemToPlayer("02",FindObjectOfType<PlayerData>());
+        // findDataItem.AddItemToPlayer("11",FindObjectOfType<PlayerData>());
     }
 }

@@ -12,8 +12,8 @@ public class Time_Manager : SingletonClass<Time_Manager>
     public int currentDayCount = 1;
     public timeStage currentTimeStage;
 
-    [Header("Warning")]
-    [SerializeField] private bool isPlayerLateMidnight = false;
+    // [Header("Warning")]
+    // [SerializeField] private bool isPlayerLateMidnight = false;
 
     // Event to trigger timeStage in other scripts
     public static event Action OnNewMorning;

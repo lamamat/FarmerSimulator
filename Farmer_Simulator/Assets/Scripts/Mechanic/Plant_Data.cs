@@ -11,13 +11,13 @@ public class Plant_Data : MonoBehaviour , CanWatered
         None // no plant
     }
     public Seed_Scriptable SeedData;
-    [SerializeField] private PlantStage _plantStage;
+    public PlantStage _plantStage;
     [SerializeField] private int currentDay;
-    [SerializeField] private bool isWatered;
+    public bool isWatered;
     [SerializeField] private Transform plantLocation; // location to plant the seed
 
     [Header("Infect")]
-    [SerializeField] private bool isInfected;
+    public bool isInfected;
 
     [Tooltip("Infect Chance Rate Chance to infect the plant 0 is no chance 1 is 100% chance")]
     [SerializeField] [Range(0f,1f)] private float infectChanceRate; // chance to infect the plant
@@ -25,6 +25,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
     private GameObject plantPrefab; // prefab of the plant
 
     private FindDataItem findDataItem;
+    private int plantIndex = 0; // index of the plant in the lis
 
 
     void OnEnable()
@@ -40,6 +41,31 @@ public class Plant_Data : MonoBehaviour , CanWatered
     void Start()
     {
         findDataItem = FindObjectOfType<FindDataItem>();
+
+        if(SeedData != null)
+        {
+            plantIndex = 0; // Reset plant index when planting a new seed
+            ChangeGameObj(plantIndex);
+            _plantStage = PlantStage.Seed;
+            currentDay = 0;
+            isWatered = false; // Reset watering status for the new seed
+        }
+        else
+        {
+            _plantStage = PlantStage.None; // No seed planted
+        }
+    }
+
+    void Update()
+    {
+        if(SeedData == null) {
+            GetComponent<BoxCollider>().enabled = true;
+            return;
+        }
+        else if(SeedData != null) {
+            GetComponent<BoxCollider>().enabled = false;
+            return;
+        }
     }
 
     private void HandleOnNewMorning()
@@ -51,17 +77,23 @@ public class Plant_Data : MonoBehaviour , CanWatered
     private void Grow(){
         if(_plantStage == PlantStage.Dead || _plantStage == PlantStage.Harvest) return;
 
-        if(!isWatered && SeedData.WaterNeeded || _plantStage == PlantStage.Infected) _plantStage = PlantStage.Dead;
+        if(!isWatered && SeedData.WaterNeeded || _plantStage == PlantStage.Infected) {
+            _plantStage = PlantStage.Dead;
+            return;
+        }
 
         currentDay++;
         isWatered = false; // Reset watering status for the next day
 
         if(_plantStage == PlantStage.Seed){
             _plantStage = PlantStage.Growing;
+            plantIndex++;
         }
         else if(_plantStage == PlantStage.Growing && currentDay >= SeedData.GrowDay){
             _plantStage = PlantStage.Harvest;
+            plantIndex++;
         }
+        ChangeGameObj(plantIndex);
 
 
         Debug.Log("Plant is now at stage: " + _plantStage);
@@ -81,7 +113,11 @@ public class Plant_Data : MonoBehaviour , CanWatered
 
     //Update the plant prefab based on the current stage
     private void ChangeGameObj(int index){
-        if(plantPrefab == null) plantPrefab = SeedData.growStates[index].plantPrefab;
+        if(plantPrefab == null) {
+            plantPrefab = SeedData.growStates[index].plantPrefab;
+            GameObject newPlant = Instantiate(plantPrefab, plantLocation.position, Quaternion.identity, plantLocation);
+            newPlant.transform.localPosition = Vector3.zero; // Set position to zero
+        }
         else if(plantPrefab != null){
             if (plantLocation.childCount > 0) {
                 Destroy(plantLocation.GetChild(0).gameObject); // Destroy the old plant prefab
@@ -106,7 +142,8 @@ public class Plant_Data : MonoBehaviour , CanWatered
     //TODO : if Harvest
     public void _Harvest(){
         if(_plantStage == PlantStage.Harvest){
-            findDataItem.AddItemToPlayer(SeedData.product.getID(),FindObjectOfType<PlayerData>());
+            // findDataItem.AddItemToPlayer(SeedData.product.getID(),FindObjectOfType<PlayerData>()); // Add the harvested product to the player's inventory
+            Destroy(plantLocation.GetChild(0).gameObject);
             SeedData = null; // Clear the product after harvesting
             _plantStage = PlantStage.None;
         }
@@ -118,6 +155,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
     public void Sell(){
         if(_plantStage == PlantStage.Harvest){
             Game_Manager.instance.playerData.AddMoney(SeedData.SellPrice);
+            Destroy(plantLocation.GetChild(0).gameObject);
             SeedData = null; // Clear the product after harvesting
             _plantStage = PlantStage.None;
         }
@@ -135,10 +173,63 @@ public class Plant_Data : MonoBehaviour , CanWatered
     public void PlantSeed(Seed_Scriptable seedData){
         SeedData = seedData;
         Game_Manager.instance.playerData.SubtractMoney(SeedData.BuyPrice); // Subtract money when planting the seed
+        plantIndex = 0;
+        ChangeGameObj(plantIndex);
         _plantStage = PlantStage.Seed;
         currentDay = 0;
         isWatered = false; // Reset watering status for the new seed
     }
 
+    public void GrowPlant(){
+        Watered();
+        if(_plantStage == PlantStage.Seed){
+            Debug.Log("Plant is growing!");
+            _plantStage = PlantStage.Growing;
+            plantIndex++;
+        }
+        else if(_plantStage == PlantStage.Growing){
+            _plantStage = PlantStage.Harvest;
+            plantIndex++;
+        }
+        ChangeGameObj(plantIndex);
+    }
+
+    #endregion
+
+    #region for hand gun
+    public void HandleCureAction()
+    {
+        Debug.Log("Handling cure action on: " + gameObject.name);
+        // Add logic for curing objects
+        PlantCure();
+    }
+
+    public void HandleHarvestAction()
+    {
+        Debug.Log("Handling harvest action on: " + gameObject.name);
+        // Add logic for harvesting crops
+        Sell();
+    }
+
+    public void HandlePlantAction(Seed_Scriptable seedData)
+    {
+        Debug.Log("Handling plant action on: " + gameObject.name);
+        // Add logic for planting seeds
+        PlantSeed(seedData);
+    }
+
+    public void HandleWaterAction()
+    {
+        Debug.Log("Handling water action on: " +gameObject.name);
+        // Add logic for watering plants
+        Watered();
+    }
+
+    public void HandleGrowAction()
+    {
+        Debug.Log("Handling grow action on: " + gameObject.name);
+        // Add logic for accelerating plant growth
+        GrowPlant();
+    }
     #endregion
 }

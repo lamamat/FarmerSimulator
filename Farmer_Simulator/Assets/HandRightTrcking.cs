@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class HandRightTrcking : MonoBehaviour
 {
-    public List<GameObject> weapons; // อาวุธทั้งหมด
-    private int currentWeaponIndex = 0;
+    public List<GameObject> weapons; // List of weapons
+    public int currentWeaponIndex = 0;
 
-    private bool isRightStickInUse = false; // สำหรับเช็คว่า thumbstick ถูกกดหรือยัง
+    private bool isRightStickInUse = false; // To track thumbstick usage
+    public float cooldownTime = 0.5f; // Cooldown time in seconds
+    private float lastSwitchTime = 0f; // Time of the last weapon switch
 
     void Start()
     {
@@ -18,14 +20,25 @@ public class HandRightTrcking : MonoBehaviour
     {
         Vector2 input = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
 
-        // เงื่อนไข: ถ้าเลื่อนไปทางขวา (x > 0.5) และยังไม่อยู่ในสถานะ "in use"
-        if (input.x > 0.5f && !isRightStickInUse)
+        // Check if enough time has passed since the last switch
+        if (Time.time - lastSwitchTime >= cooldownTime)
         {
-            isRightStickInUse = true;
-            SwitchToNextWeapon();
+            if (input.x > 0.5f && !isRightStickInUse)
+            {
+                isRightStickInUse = true;
+                lastSwitchTime = Time.time; 
+                SwitchToNextWeapon();
+            }
+            else if (input.x < -0.5f && !isRightStickInUse)
+            {
+                isRightStickInUse = true;
+                lastSwitchTime = Time.time;
+                backSwitchToNextWeapon();
+            }
         }
-        // ถ้าคืนกลับมา (ไม่เลื่อนไปขวาแล้ว) ให้ reset สถานะ
-        else if (input.x < 0.2f && isRightStickInUse)
+
+        // Reset isRightStickInUse when the thumbstick is released
+        if (input.x > -0.5f && input.x < 0.5f)
         {
             isRightStickInUse = false;
         }
@@ -34,6 +47,12 @@ public class HandRightTrcking : MonoBehaviour
     void SwitchToNextWeapon()
     {
         currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+        UpdateWeaponVisibility();
+    }
+
+    void backSwitchToNextWeapon()
+    {
+        currentWeaponIndex = (currentWeaponIndex - 1 + weapons.Count) % weapons.Count;
         UpdateWeaponVisibility();
     }
 

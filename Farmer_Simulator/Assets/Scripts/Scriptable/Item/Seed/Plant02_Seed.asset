@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbb3c60c4b6aecd49bbe884345309ecc, type: 3}
-  m_Name: WaterMelon_Seed
+  m_Name: Plant02_Seed
   m_EditorClassIdentifier: 
-  ID: 1
-  Name: WaterMelon
-  Description: WaterMelon
+  ID: 2
+  Name: Plant02
+  Description: Plant02
   GrowDay: 4
   SellPrice: 15
   BuyPrice: 10
   WaterNeeded: 1
   SeedPrefab: {fileID: 0}
-  product: {fileID: 11400000, guid: 4b19f45fdc7753f4e8b0fa6daf4ff486, type: 2}
+  product: {fileID: 0}
   growStates:
   - stateName: Seed
-    plantPrefab: {fileID: 0}
+    plantPrefab: {fileID: 4858542932140327274, guid: d3af19b54cda0d24686129c8f661e80e,
+      type: 3}
   - stateName: Growing
-    plantPrefab: {fileID: 0}
+    plantPrefab: {fileID: 6846149510097814264, guid: 0eea284a53b19dc4396e56ae05cbc523,
+      type: 3}
   - stateName: Harvest
-    plantPrefab: {fileID: 0}
+    plantPrefab: {fileID: 3892440392155555130, guid: d51c0fb920c4209428b49fdae3651003,
+      type: 3}

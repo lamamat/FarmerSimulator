@@ -10,14 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbb3c60c4b6aecd49bbe884345309ecc, type: 3}
-  m_Name: Banana_Seed
+  m_Name: Plant03_Seed
   m_EditorClassIdentifier: 
-  ID: 2
-  Name: Banana
-  Description: Banana
+  ID: 3
+  Name: Plant03
+  Description: Plant03
   GrowDay: 4
   SellPrice: 15
   BuyPrice: 10
   WaterNeeded: 1
   SeedPrefab: {fileID: 0}
   product: {fileID: 0}
+  growStates:
+  - stateName: Seed
+    plantPrefab: {fileID: 5833013441167864228, guid: 7db5272a3b41e084387ca4ecd3bd7a60,
+      type: 3}
+  - stateName: Growing
+    plantPrefab: {fileID: 1564270551512543407, guid: 3c960733068a5fe4b8686cc16e07dc02,
+      type: 3}
+  - stateName: Harvest
+    plantPrefab: {fileID: 8503504383783548795, guid: 8ae40fe55d7ef044190c03694bdecf9f,
+      type: 3}
