@@ -87,9 +87,43 @@ public class RaCaster : MonoBehaviour
     void HandleWeaponActionPress(int weaponIndex, RaycastHit hit)
     {
         Plant_Data plantData = hit.collider.GetComponentInParent<Plant_Data>();
+        bool isBed = hit.collider.CompareTag("bed");
+
         switch (weaponIndex)
         {
             case 0: // Hand
+                if (isBed)
+                {
+                    Debug.Log("sleep");
+                    Time_Manager.instance.ToNextDay();
+                }
+                else
+                {
+                    // เช็ค tag ของ hit object
+                    if (hit.collider.CompareTag("Next"))
+                    {
+                        HandleDisplayChange(hit.collider, true); // true = next
+                    }
+                    else if (hit.collider.CompareTag("Previous"))
+                    {
+                        HandleDisplayChange(hit.collider, false); // false = previous
+                    }
+                    // เช็ค Tag "ToFarm"
+                    else if (hit.collider.CompareTag("ToFarm"))
+                    {
+                        FastTravelManager.instance.TeleportPlayer(0); // GameObject[0]
+                    }
+                    // เช็ค Tag "ToBalance"
+                    else if (hit.collider.CompareTag("ToBalance"))
+                    {
+                        FastTravelManager.instance.TeleportPlayer(1); // GameObject[1]
+                    }
+                    // เช็ค Tag "ToBed"
+                    else if (hit.collider.CompareTag("ToBed"))
+                    {
+                        FastTravelManager.instance.TeleportPlayer(2); // GameObject[2]
+                    }
+                }
                 break;
             case 1: // Upgrade Gun
                 UpgradeObject upgradeTarget = hit.collider.GetComponent<UpgradeObject>();
@@ -121,56 +155,90 @@ public class RaCaster : MonoBehaviour
                 break;
         }
     }
-
+    private void HandleDisplayChange(Collider collider, bool isNext)
+    {
+        DisplayShowManager displayManager = collider.GetComponentInParent<DisplayShowManager>();
+        if (displayManager != null)
+        {
+            if (isNext)
+            {
+                displayManager.Next(); // ถ้าเป็น "next"
+            }
+            else
+            {
+                displayManager.Previous(); // ถ้าเป็น "previous"
+            }
+        }
+        else
+        {
+            Debug.LogWarning("DisplayManager not found on parent of: " + collider.gameObject.name);
+        }
+    }
     void HandleWeaponActionHold(int weaponIndex, RaycastHit hit)
     {
         Plant_Data plantData = hit.collider.GetComponentInParent<Plant_Data>();
+        bool isBed = hit.collider.CompareTag("bed");
 
         switch (weaponIndex)
         {
             case 0: // Hand
-                uiText("");
+                if (isBed)
+                {
+                    uiText("Press to sleep");
+                }
+                else
+                {
+                    uiText("");
+                }
                 break;
             case 1: // Upgrade Gun
-                uiText("");
-                break;
             case 2: // Cure Gun
-                if(plantData.isInfected)
-                {
-                    uiText($"infected");
-                }
-                else
-                {
-                    uiText($"not infected");
-                }
-                break;
             case 3: // Harvest Gun
-                if (plantData._plantStage == Plant_Data.PlantStage.Harvest)
-                {
-                    uiText($"Ready to harvest \nSell Price : {plantData.SeedData.SellPrice}");
-                }
-                else
-                {
-                    uiText($"Not ready to harvest");
-                }
-                break;
             case 4: // Plant Gun
-                selectSeed();
-                break;
             case 5: // Watered Gun
-                if (plantData.isWatered)
+            case 6: // Grow Up Gun
+                if (isBed)
                 {
-                    uiText($"Watered");
+                    uiText("Switch to sleep on bed");
                 }
                 else
                 {
-                    uiText($"Not watered");
+                    switch (weaponIndex)
+                    {
+                        case 2: // Cure Gun
+                            if (plantData.isInfected)
+                            {
+                                uiText("infected");
+                            }
+                            else
+                            {
+                                uiText("not infected");
+                            }
+                            break;
+                        case 3: // Harvest Gun
+                            if (plantData._plantStage == Plant_Data.PlantStage.Harvest)
+                            {
+                                uiText($"Ready to harvest \nSell Price : {plantData.SeedData.SellPrice}");
+                            }
+                            else
+                            {
+                                uiText("Not ready to harvest");
+                            }
+                            break;
+                        case 4: // Plant Gun
+                            selectSeed();
+                            break;
+                        case 5: // Watered Gun
+                            uiText(plantData.isWatered ? "Watered" : "Not watered");
+                            break;
+                        default:
+                            uiText("");
+                            break;
+                    }
                 }
-                break;
-            case 6: // Grow Up Gun
-                uiText("");
                 break;
             default:
+                uiText("");
                 break;
         }
     }

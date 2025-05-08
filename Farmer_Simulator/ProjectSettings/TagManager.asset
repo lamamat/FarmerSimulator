@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - bed
+  - Next
+  - Previous
+  - ToFarm
+  - ToBalance
+  - ToBed
   layers:
   - Default
   - TransparentFX
@@ -12,7 +18,7 @@ TagManager:
   - Water
   - UI
   - UpgradeBox
-  - 
+  - interactable
   - 
   - 
   - 
