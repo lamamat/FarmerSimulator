@@ -6,6 +6,17 @@ using UnityEngine;
 
 public class RaCaster : MonoBehaviour
 {
+    private PlayerData playerData;
+    [Header("Cost To Upgrade")]
+    [SerializeField] int UpgradePlotCost = 1000;
+    [SerializeField] int UpgradePotCost = 500;
+    [SerializeField] TMP_Text CostToUpgrade;
+    [Header("Hold Indicators")]
+    public List<GameObject> weaponHoldIndicators; // GameObject สำหรับแต่ละปืน 1-6
+    [SerializeField] private GameObject DisPlayUpgrade;
+    [SerializeField] private GameObject upgradePlotIndicator;
+    [SerializeField] private GameObject upgradePotIndicator;
+
     public float rayLength = 100f;
     public LineRenderer lineRenderer;
     public LayerMask hitMask;
@@ -25,6 +36,7 @@ public class RaCaster : MonoBehaviour
     {
         handRight = GetComponent<HandRightTrcking>();
         getSeedList();
+        playerData = FindObjectOfType<PlayerData>(); // หาตัว PlayerData
     }
 
     void Update()
@@ -52,6 +64,7 @@ public class RaCaster : MonoBehaviour
         if (Physics.Raycast(ray, out hit, rayLength, hitMask))
         {
             HandleWeaponActionHold(handRight.currentWeaponIndex, hit);
+            HandleUpgradeIndicators(hit);
             // Check if the fire button on the Meta Quest controller is pressed
             if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
             {
@@ -67,11 +80,50 @@ public class RaCaster : MonoBehaviour
         else
         {
             uiText("");
+            DisPlayUpgrade.SetActive(false);
         }
 
 
     }
+    private void HandleUpgradeIndicators(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("UpgradePlot"))
+        {
+            DisPlayUpgrade.SetActive(true);
+            upgradePlotIndicator.SetActive(true);
+            upgradePotIndicator.SetActive(false);
+            CostToUpgrade.text = $"Cost: {UpgradePlotCost}";
 
+            if (playerData.Money < UpgradePlotCost)
+            {
+                uiText("Not enough money");
+            }
+            else
+            {
+                uiText(""); // ถ้าเงินพอ ไม่ต้องแสดงข้อความ
+            }
+        }
+        else if (hit.collider.CompareTag("UpgradePot"))
+        {
+            DisPlayUpgrade.SetActive(true);
+            upgradePlotIndicator.SetActive(false);
+            upgradePotIndicator.SetActive(true);
+            CostToUpgrade.text = $"Cost: {UpgradePotCost}";
+
+            if (playerData.Money < UpgradePotCost)
+            {
+                uiText("Not enough money");
+            }
+            else
+            {
+                uiText("");
+            }
+        }
+        else
+        {
+            DisPlayUpgrade.SetActive(false);
+        }
+    }
     private void getSeedList()
     {
         List<Data> datas = FindDataItem.instance.items;
@@ -129,7 +181,34 @@ public class RaCaster : MonoBehaviour
                 UpgradeObject upgradeTarget = hit.collider.GetComponent<UpgradeObject>();
                 if (upgradeTarget != null)
                 {
-                    upgradeTarget.Debughit();
+                    if (hit.collider.CompareTag("UpgradePlot"))
+                    {
+                        if (playerData.Money >= UpgradePlotCost)
+                        {
+                            playerData.SubtractMoney(UpgradePlotCost);
+                            upgradeTarget.Debughit();
+                        }
+                        else
+                        {
+                            uiText("Not enough money");
+                        }
+                    }
+                    else if (hit.collider.CompareTag("UpgradePot"))
+                    {
+                        if (playerData.Money >= UpgradePotCost)
+                        {
+                            playerData.SubtractMoney(UpgradePotCost);
+                            upgradeTarget.Debughit();
+                        }
+                        else
+                        {
+                            uiText("Not enough money");
+                        }
+                    }
+                    else
+                    {
+                        upgradeTarget.Debughit(); // เผื่อมี tag อื่นในอนาคต
+                    }
                 }
                 else
                 {

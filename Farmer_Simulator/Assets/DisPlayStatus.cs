@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DisPlayStatus : MonoBehaviour
 {
-    PlayerData player = new PlayerData();
+    PlayerData player;
     [SerializeField] TMP_Text Day;
     [SerializeField] TMP_Text MoneyCollect;
     [SerializeField] TMP_Text MoneyAmount;
@@ -17,6 +17,7 @@ public class DisPlayStatus : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<PlayerData>(); // หาตัว PlayerData
     }
 
     void Update()

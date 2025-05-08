@@ -10,6 +10,8 @@ TagManager:
   - ToFarm
   - ToBalance
   - ToBed
+  - UpgradePlot
+  - UpgradePot
   layers:
   - Default
   - TransparentFX
