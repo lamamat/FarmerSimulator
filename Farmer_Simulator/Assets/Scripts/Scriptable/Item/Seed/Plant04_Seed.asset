@@ -16,8 +16,8 @@ MonoBehaviour:
   Name: Plant02
   Description: Plant02
   GrowDay: 4
-  SellPrice: 15
-  BuyPrice: 10
+  SellPrice: 150
+  BuyPrice: 100
   WaterNeeded: 1
   SeedPrefab: {fileID: 0}
   product: {fileID: 0}

@@ -12,6 +12,8 @@ TagManager:
   - ToBed
   - UpgradePlot
   - UpgradePot
+  - BigBattery
+  - SmallBattery
   layers:
   - Default
   - TransparentFX

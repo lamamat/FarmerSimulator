@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class RaCaster : MonoBehaviour
 {
+    public BatteryManager batterymeg;
     //sleep fade 
     [SerializeField] GameObject SleepFade; //use when sleep
     [SerializeField] GameObject ControllerLerLeft;
@@ -125,6 +126,28 @@ public class RaCaster : MonoBehaviour
 
     private void HandleUpgradeIndicators(RaycastHit hit)
     {
+        BuyBatteryDisplay(hit);
+        UpgradPlotDisplay(hit);
+    }
+
+    void BuyBatteryDisplay(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("SmallBattery"))
+        {
+            uiText("press to buy battery");
+          //  batterymeg.SpawnSmallBattery();
+        }
+        else if (hit.collider.CompareTag("BigBattery"))
+        {
+            uiText("press to buy BIG battery");
+           // batterymeg.SpawnBigBattery();
+        }
+        else
+        {
+        }
+    }
+    void UpgradPlotDisplay(RaycastHit hit)
+    {
         if (hit.collider.CompareTag("UpgradePlot"))
         {
             DisPlayUpgrade.SetActive(true);
@@ -212,6 +235,33 @@ public class RaCaster : MonoBehaviour
                     else if (hit.collider.CompareTag("ToBed"))
                     {
                         FastTravelManager.instance.TeleportPlayer(2); // GameObject[2]
+                    }
+                    else if (hit.collider.CompareTag("SmallBattery"))
+                    {
+                        if(playerData.Money > 200)
+                        {
+                            playerData.SubtractMoney(200);
+                            batterymeg.SpawnSmallBattery();
+                        }
+                        else
+                        {
+                            uiText("You don't have enough money");
+                        }
+                    }
+                    else if (hit.collider.CompareTag("BigBattery"))
+                    {
+                        if (playerData.Money > 500)
+                        {
+                            playerData.SubtractMoney(500);
+                            batterymeg.SpawnBigBattery();
+                        }
+                        else
+                        {
+                            uiText("You don't have enough money");
+                        }
+                    }
+                    else
+                    {
                     }
                 }
                 break;

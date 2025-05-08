@@ -16,8 +16,8 @@ MonoBehaviour:
   Name: Plant01
   Description: Plant01
   GrowDay: 3
-  SellPrice: 15
-  BuyPrice: 10
+  SellPrice: 150
+  BuyPrice: 100
   WaterNeeded: 1
   SeedPrefab: {fileID: 5435379527013311642, guid: 88efd6c2c184917469036d1505a1b511,
     type: 3}
