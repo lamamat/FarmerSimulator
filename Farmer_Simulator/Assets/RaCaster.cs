@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class RaCaster : MonoBehaviour
 {
+    //sleep fade 
+    [SerializeField] GameObject SleepFade; //use when sleep
+    [SerializeField] GameObject ControllerLerLeft;
+
+
     private PlayerData playerData;
     [Header("Cost To Upgrade")]
     [SerializeField] int UpgradePlotCost = 1000;
@@ -180,7 +185,7 @@ public class RaCaster : MonoBehaviour
                 if (isBed)
                 {
                     Debug.Log("sleep");
-                    Time_Manager.instance.ToNextDay();
+                    StartCoroutine(SleepFadeCountDown());
                 }
                 else
                 {
@@ -407,6 +412,16 @@ public class RaCaster : MonoBehaviour
         {
             gunParticle[index].Stop();
         }
+    }
+
+    IEnumerator SleepFadeCountDown()
+    {
+        ControllerLerLeft.SetActive(false);
+        SleepFade.SetActive(true);
+        yield return new WaitForSeconds(5);
+        Time_Manager.instance.ToNextDay();
+        SleepFade.SetActive(false);
+        ControllerLerLeft.SetActive(true);
     }
 
 }
