@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HandRightTrcking : MonoBehaviour
 {
+    [SerializeField] GameObject UpgradeBox;
     public List<GameObject> weapons; // List of weapons
     public int currentWeaponIndex = 0;
 
@@ -41,6 +42,15 @@ public class HandRightTrcking : MonoBehaviour
         if (input.x > -0.5f && input.x < 0.5f)
         {
             isRightStickInUse = false;
+        }
+
+        if(currentWeaponIndex == 1)
+        {
+            UpgradeBox.SetActive(true);
+        }
+        else
+        {
+            UpgradeBox.SetActive(false);
         }
     }
 

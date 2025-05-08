@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -69,7 +69,7 @@ public class RaCaster : MonoBehaviour
             uiText("");
         }
 
-        
+
     }
 
     private void getSeedList()
@@ -87,12 +87,20 @@ public class RaCaster : MonoBehaviour
     void HandleWeaponActionPress(int weaponIndex, RaycastHit hit)
     {
         Plant_Data plantData = hit.collider.GetComponentInParent<Plant_Data>();
-
         switch (weaponIndex)
         {
             case 0: // Hand
                 break;
             case 1: // Upgrade Gun
+                UpgradeObject upgradeTarget = hit.collider.GetComponent<UpgradeObject>();
+                if (upgradeTarget != null)
+                {
+                    upgradeTarget.Debughit();
+                }
+                else
+                {
+                    Debug.LogWarning("UpgradeObject NOT FOUND on: " + hit.collider.gameObject.name);
+                }
                 break;
             case 2: // Cure Gun
                 plantData.HandleCureAction();

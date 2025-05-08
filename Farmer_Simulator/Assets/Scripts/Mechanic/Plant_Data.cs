@@ -132,6 +132,8 @@ public class Plant_Data : MonoBehaviour , CanWatered
 
     #region for Gun
     // Cure the plant
+
+
     public void PlantCure(){
         if(_plantStage == PlantStage.Infected){
             isInfected = false;
@@ -198,6 +200,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
     #endregion
 
     #region for hand gun
+
     public void HandleCureAction()
     {
         Debug.Log("Handling cure action on: " + gameObject.name);
