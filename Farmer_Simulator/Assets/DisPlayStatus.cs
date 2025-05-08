@@ -13,11 +13,10 @@ public class DisPlayStatus : MonoBehaviour
     [SerializeField] TMP_Text MoneyAmount;
     [SerializeField] TMP_Text MoneyDisplay;
     int PreviousMoneyAmount; // for display only day amout money 
-    int TheDayMoney;
 
     void Start()
     {
-        player = FindObjectOfType<PlayerData>(); // ËÒµÑÇ PlayerData
+        player = FindObjectOfType<PlayerData>(); // ï¿½Òµï¿½ï¿½ PlayerData
     }
 
     void Update()
@@ -27,18 +26,17 @@ public class DisPlayStatus : MonoBehaviour
             player.AddMoney(100);
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) //DEBUG when sleep
-        {
-            PreviousMoneyAmount = player.Money;
-            TheDayMoney = 0;
-            Time_Manager.instance.ToNextDay();
-        }
+        // if (Input.GetKeyDown(KeyCode.X)) //DEBUG when sleep
+        // {
+        //     PreviousMoneyAmount = player.Money;
+        //     TheDayMoney = 0;
+        //     Time_Manager.instance.ToNextDay();
+        // }
 
         Day.text = "Day : " + Time_Manager.instance.currentDayCount.ToString();
         MoneyAmount.text = player.Money.ToString();
         MoneyDisplay.text = player.Money.ToString();
 
-        TheDayMoney = player.Money - PreviousMoneyAmount;
-        MoneyCollect.text = TheDayMoney.ToString();
+        MoneyCollect.text = Game_Manager.instance.moneyCollectToday.ToString();
     }
 }

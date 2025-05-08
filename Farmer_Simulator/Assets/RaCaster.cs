@@ -12,7 +12,7 @@ public class RaCaster : MonoBehaviour
     [SerializeField] int UpgradePotCost = 500;
     [SerializeField] TMP_Text CostToUpgrade;
     [Header("Hold Indicators")]
-    public List<GameObject> weaponHoldIndicators; // GameObject สำหรับแต่ละปืน 1-6
+    public List<ParticleSystem> gunParticle; // GameObject สำหรับแต่ละปืน 1-6
     [SerializeField] private GameObject DisPlayUpgrade;
     [SerializeField] private GameObject upgradePlotIndicator;
     [SerializeField] private GameObject upgradePotIndicator;
@@ -27,7 +27,7 @@ public class RaCaster : MonoBehaviour
 
     [Header("Seed")]
     public List<Seed_Scriptable> seedList = new List<Seed_Scriptable>();
-    [SerializeField]private int seedIndex = 0;
+    [SerializeField] private int seedIndex = 0;
 
     [Header("UI")]
     [SerializeField] private TMP_Text ui_Text;
@@ -76,15 +76,48 @@ public class RaCaster : MonoBehaviour
                     HandleWeaponActionPress(handRight.currentWeaponIndex, hit);
                 }
             }
+            else{
+                HandleWeaponActionRelease(handRight.currentWeaponIndex);
+            }
         }
         else
         {
             uiText("");
             DisPlayUpgrade.SetActive(false);
+            HandleWeaponActionRelease(handRight.currentWeaponIndex);
+
         }
 
 
     }
+
+    private void HandleWeaponActionRelease(int currentWeaponIndex)
+    {
+        switch (currentWeaponIndex)
+        {
+            case 1: // Upgrade Gun
+                stopPratical(0);
+                break;
+            case 2: // Cure Gun
+                stopPratical(1);
+                break;
+            case 3: // Harvest Gun
+                stopPratical(2);
+                break;
+            case 4: // Plant Gun
+                stopPratical(3);
+                break;
+            case 5: // Watered Gun
+                stopPratical(4);
+                break;
+            case 6: // Grow Up Gun
+                stopPratical(5);
+                break;
+            default:
+                break;
+        }
+    }
+
     private void HandleUpgradeIndicators(RaycastHit hit)
     {
         if (hit.collider.CompareTag("UpgradePlot"))
@@ -178,6 +211,8 @@ public class RaCaster : MonoBehaviour
                 }
                 break;
             case 1: // Upgrade Gun
+                PlayPratical(0);
+
                 UpgradeObject upgradeTarget = hit.collider.GetComponent<UpgradeObject>();
                 if (upgradeTarget != null)
                 {
@@ -216,18 +251,28 @@ public class RaCaster : MonoBehaviour
                 }
                 break;
             case 2: // Cure Gun
+                PlayPratical(1);
+
                 plantData.HandleCureAction();
                 break;
             case 3: // Harvest Gun
+                PlayPratical(2);
+
                 plantData.HandleHarvestAction();
                 break;
             case 4: // Plant Gun
+                PlayPratical(3);
+
                 plantData.HandlePlantAction(seedList[seedIndex]);
                 break;
             case 5: // Watered Gun
+                PlayPratical(4);
+
                 plantData.HandleWaterAction();
                 break;
             case 6: // Grow Up Gun
+                PlayPratical(5);
+                
                 plantData.HandleGrowAction();
                 break;
             default:
@@ -257,7 +302,6 @@ public class RaCaster : MonoBehaviour
     {
         Plant_Data plantData = hit.collider.GetComponentInParent<Plant_Data>();
         bool isBed = hit.collider.CompareTag("bed");
-
         switch (weaponIndex)
         {
             case 0: // Hand
@@ -269,53 +313,52 @@ public class RaCaster : MonoBehaviour
                 {
                     uiText("");
                 }
-                break;
-            case 1: // Upgrade Gun
+            break;
             case 2: // Cure Gun
-            case 3: // Harvest Gun
-            case 4: // Plant Gun
-            case 5: // Watered Gun
-            case 6: // Grow Up Gun
-                if (isBed)
+                if (plantData.isInfected)
                 {
-                    uiText("Switch to sleep on bed");
+                    uiText("infected");
                 }
                 else
                 {
-                    switch (weaponIndex)
-                    {
-                        case 2: // Cure Gun
-                            if (plantData.isInfected)
-                            {
-                                uiText("infected");
-                            }
-                            else
-                            {
-                                uiText("not infected");
-                            }
-                            break;
-                        case 3: // Harvest Gun
-                            if (plantData._plantStage == Plant_Data.PlantStage.Harvest)
-                            {
-                                uiText($"Ready to harvest \nSell Price : {plantData.SeedData.SellPrice}");
-                            }
-                            else
-                            {
-                                uiText("Not ready to harvest");
-                            }
-                            break;
-                        case 4: // Plant Gun
-                            selectSeed();
-                            break;
-                        case 5: // Watered Gun
-                            uiText(plantData.isWatered ? "Watered" : "Not watered");
-                            break;
-                        default:
-                            uiText("");
-                            break;
-                    }
+                    uiText("not infected");
                 }
-                break;
+            break;
+            case 3: // Harvest Gun
+                if (plantData._plantStage == Plant_Data.PlantStage.Harvest)
+                {
+                    uiText($"Ready to harvest \nSell Price : {plantData.SeedData.SellPrice}");
+                }
+                else if(plantData._plantStage == Plant_Data.PlantStage.Dead)
+                {
+                    uiText($"This Plant is Dead \nSell Price : 0");
+                }
+                else
+                {
+                    uiText("Not ready to harvest");
+                }
+            break;
+            case 4: // Plant Gun
+                selectSeed();
+            break;
+            case 5: // Watered Gun
+                if (plantData._plantStage == Plant_Data.PlantStage.None || plantData._plantStage == Plant_Data.PlantStage.Dead) // Add null check for plantData
+                {
+                    uiText("no Plant");
+                }
+                else uiText(plantData.isWatered ? "Watered" : "Not watered");
+            break;
+            case 6: // Grow Up Gun
+                if (plantData._plantStage == Plant_Data.PlantStage.None || plantData._plantStage == Plant_Data.PlantStage.Dead) // Add null check for plantData
+                {
+                    uiText("no Plant");
+                }
+                else if (plantData._plantStage == Plant_Data.PlantStage.Harvest)
+                {
+                    uiText("Max Grow Up");
+                }
+                else uiText("Can grow up \n price : 100");
+            break;
             default:
                 uiText("");
                 break;
@@ -330,7 +373,7 @@ public class RaCaster : MonoBehaviour
             seedIndex--;
             if (seedIndex < 0)
             {
-            seedIndex = seedList.Count - 1; // Wrap around to the last seed
+                seedIndex = seedList.Count - 1; // Wrap around to the last seed
             }
         }
         else if (OVRInput.GetDown(OVRInput.Button.Two)) // B button on Meta Quest controller
@@ -349,4 +392,21 @@ public class RaCaster : MonoBehaviour
     {
         ui_Text.text = text;
     }
+
+    private void PlayPratical(int index)
+    {
+        if (gunParticle[index] != null)
+        {
+            gunParticle[index].Play();
+        }
+    }
+
+    private void stopPratical(int index)
+    {
+        if (gunParticle[index] != null)
+        {
+            gunParticle[index].Stop();
+        }
+    }
+
 }

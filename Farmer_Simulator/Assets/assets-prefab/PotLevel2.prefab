@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5387796173159655632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9093848041766141081}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 8134139282269642207}
   - component: {fileID: 1251581051846741708}
   - component: {fileID: 57263533912211522}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4976033337467189560}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: transform89
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 6040515584202279683}
   - component: {fileID: 9049185935587917868}
   - component: {fileID: 2291397637591461995}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7448710823500994973}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pCylinder4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 97570071979657098}
   - component: {fileID: 8223637543844317715}
   - component: {fileID: 6232216877785069481}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 9113526332118829757}
   - component: {fileID: 5636048725424864312}
   - component: {fileID: 6091261234659242143}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5548576026250298471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: transform88
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2013578745490362784}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: transform6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8372630627853774484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pCylinder8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,6 +560,37 @@ Transform:
   - {fileID: 104924140092606620}
   m_Father: {fileID: 1515502747801623709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5346175649824945894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9219955621501348286}
+  m_Layer: 3
+  m_Name: PlantLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9219955621501348286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346175649824945894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1515502747801623709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5843944988613110119
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3705390320452446620}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: transform8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509761298046067076}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pCylinder5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 104924140092606620}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: transform87
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +694,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515502747801623709}
-  m_Layer: 0
+  - component: {fileID: 329268911597712269}
+  - component: {fileID: 3805317525247530994}
+  m_Layer: 3
   m_Name: PotLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,9 +713,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.31195378, y: -0.14581871, z: 0.65446043}
-  m_LocalScale: {x: 0.48735008, y: 0.48735, z: 0.48735008}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 9219955621501348286}
   - {fileID: 4388452712834934152}
   - {fileID: 7448710823500994973}
   - {fileID: 509761298046067076}
@@ -690,6 +724,47 @@ Transform:
   - {fileID: 8102143872376369110}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &329268911597712269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742819378695096330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8368128c020183840bf534ea9c2ac647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SeedData: {fileID: 0}
+  _plantStage: 5
+  _potLevel: 0
+  currentDay: 0
+  isWatered: 0
+  plantLocation: {fileID: 9219955621501348286}
+  isInfected: 0
+  infectChanceRate: 0.1
+--- !u!65 &3805317525247530994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742819378695096330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1 &7636324787388821354
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8833784772074909093}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: transform7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +807,7 @@ GameObject:
   - component: {fileID: 463119119137146105}
   - component: {fileID: 6510412889698727703}
   - component: {fileID: 7151554316446779152}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +890,7 @@ GameObject:
   - component: {fileID: 8102143872376369110}
   - component: {fileID: 7891536595178700945}
   - component: {fileID: 3160423536296470916}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polySurface12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4388452712834934152}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pCube6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

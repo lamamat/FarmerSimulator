@@ -10,8 +10,16 @@ public class Plant_Data : MonoBehaviour , CanWatered
         Infected,
         None // no plant
     }
+
+    public enum PotLevel{
+        Normal,
+        Upgrade
+    }
+
+    [Header("Plant Data")]
     public Seed_Scriptable SeedData;
     public PlantStage _plantStage;
+    public PotLevel _potLevel; // level of the pot
     [SerializeField] private int currentDay;
     public bool isWatered;
     [SerializeField] private Transform plantLocation; // location to plant the seed
@@ -162,6 +170,11 @@ public class Plant_Data : MonoBehaviour , CanWatered
             SeedData = null; // Clear the product after harvesting
             _plantStage = PlantStage.None;
         }
+        else if(_plantStage == PlantStage.Dead){
+            Destroy(plantLocation.GetChild(0).gameObject);
+            SeedData = null; // Clear the product after harvesting
+            _plantStage = PlantStage.None;
+        }
         else{
             return;
         }
@@ -184,6 +197,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
     }
 
     public void GrowPlant(){
+        Game_Manager.instance.playerData.SubtractMoney(100);
         Watered();
         if(_plantStage == PlantStage.Seed){
             Debug.Log("Plant is growing!");

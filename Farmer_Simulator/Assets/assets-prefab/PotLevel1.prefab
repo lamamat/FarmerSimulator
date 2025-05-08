@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3570883573393582685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479077118933278641}
+  m_Layer: 3
+  m_Name: PlantLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &479077118933278641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570883573393582685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6542074842948072556}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6150597512474918770
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,9 @@ GameObject:
   - component: {fileID: 6542074842948072556}
   - component: {fileID: 926270705719719114}
   - component: {fileID: 1618270510589023682}
-  m_Layer: 0
+  - component: {fileID: 2832882293834664693}
+  - component: {fileID: 4381928426508438013}
+  m_Layer: 3
   m_Name: PotLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,9 +61,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0443534, z: -0, w: 0.9990159}
   m_LocalPosition: {x: -0.30930635, y: -0.0058193207, z: 0.660001}
-  m_LocalScale: {x: 0.0014003998, y: 0.0013714046, z: 0.0014350683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 479077118933278641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -85, z: 0}
 --- !u!33 &926270705719719114
@@ -83,3 +117,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2832882293834664693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150597512474918770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8368128c020183840bf534ea9c2ac647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SeedData: {fileID: 0}
+  _plantStage: 5
+  _potLevel: 0
+  currentDay: 0
+  isWatered: 0
+  plantLocation: {fileID: 479077118933278641}
+  isInfected: 0
+  infectChanceRate: 0.25
+--- !u!65 &4381928426508438013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150597512474918770}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31435037, y: 0.3000002, z: 0.30299282}
+  m_Center: {x: 0.00000025331974, y: 0.00000017881393, z: -0.000000067055225}

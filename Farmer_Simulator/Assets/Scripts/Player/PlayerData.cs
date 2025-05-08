@@ -28,6 +28,7 @@ public class PlayerData : MonoBehaviour
     }
 
     public void AddMoney(int amount){
+        Game_Manager.instance.moneyCollectToday += amount; // add to the money collect today
         _money += amount;
     }
 
