@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BatteryManager : MonoBehaviour
 {
+    public PlayerData platerdata;
+    [SerializeField] TMP_Text YouSurvvied;
+    [SerializeField] TMP_Text moneycollect;
+    [SerializeField] GameObject PowerRanout;
     public GameObject SmallBattery;
     public GameObject BigBattery;
     public List<Transform> spawnPoints = new List<Transform>();
 
-    private List<GameObject> spawnedObjects = new List<GameObject>();
+    public List<GameObject> spawnedObjects = new List<GameObject>();
     private int currentIndex = 0;
 
     private void Start()
@@ -20,7 +25,12 @@ public class BatteryManager : MonoBehaviour
     }
     void Update()
     {
-
+        if (spawnedObjects.Count <= 0)
+        {
+            PowerRanout.SetActive(true);
+            YouSurvvied.text = "You survived : " + Time_Manager.instance.currentDayCount + "Days";
+            moneycollect.text = "Money Collected totally : " + platerdata.Money;
+        }
 
     }
 

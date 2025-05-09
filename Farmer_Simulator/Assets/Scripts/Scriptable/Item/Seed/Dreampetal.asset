@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbb3c60c4b6aecd49bbe884345309ecc, type: 3}
-  m_Name: Plant04_Seed
+  m_Name: Dreampetal
   m_EditorClassIdentifier: 
-  ID: 4
-  Name: Plant02
-  Description: Plant02
+  ID: 2
+  Name: Dreampetal
+  Description: 'Effect: Grants dream control'
   GrowDay: 4
-  SellPrice: 150
-  BuyPrice: 100
+  SellPrice: 400
+  BuyPrice: 50
   WaterNeeded: 1
   SeedPrefab: {fileID: 0}
   product: {fileID: 0}
   growStates:
   - stateName: Seed
-    plantPrefab: {fileID: 9134681206986840344, guid: a30f8588e07507a489bddb58b0aac3df,
+    plantPrefab: {fileID: 4858542932140327274, guid: d3af19b54cda0d24686129c8f661e80e,
       type: 3}
   - stateName: Growing
-    plantPrefab: {fileID: 5939836556516742288, guid: 503cd82144c8b0b49a3e68676f8b870d,
+    plantPrefab: {fileID: 6846149510097814264, guid: 0eea284a53b19dc4396e56ae05cbc523,
       type: 3}
   - stateName: Harvest
-    plantPrefab: {fileID: 1416577105008769621, guid: f3a619f7f733a2f4591cceb97d953910,
+    plantPrefab: {fileID: 3892440392155555130, guid: d51c0fb920c4209428b49fdae3651003,
       type: 3}
   - stateName: Dead
-    plantPrefab: {fileID: 4706053445811352569, guid: ce03347ca67b7194db3ac91a9eab53c9,
+    plantPrefab: {fileID: 1820917502620257377, guid: 2c5b5659f7b247549b9633ed0dd2c813,
       type: 3}
   - stateName: Infect
-    plantPrefab: {fileID: 5939836556516742288, guid: cfedfc1bf655b0245b1ac2878bd990a0,
+    plantPrefab: {fileID: 6846149510097814264, guid: 68a30c3f0ad4dd143b76f69f0d4de100,
       type: 3}

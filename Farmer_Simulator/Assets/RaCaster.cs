@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class RaCaster : MonoBehaviour
 {
+    [SerializeField] patrolSystemROBOT robot;
+    [SerializeField] GameObject displayUiText;
     public BatteryManager batterymeg;
     //sleep fade 
     [SerializeField] GameObject SleepFade; //use when sleep
@@ -94,6 +96,14 @@ public class RaCaster : MonoBehaviour
 
         }
 
+        if(ui_Text.text == "")
+        {
+            displayUiText.SetActive(false);
+        }
+        else
+        {
+            displayUiText.SetActive(true);
+        }
 
     }
 
@@ -141,6 +151,11 @@ public class RaCaster : MonoBehaviour
         {
             uiText("press to buy BIG battery");
            // batterymeg.SpawnBigBattery();
+        }
+        else if (hit.collider.CompareTag("RobotBattery"))
+        {
+            uiText("press to buy robot battery");
+            // batterymeg.SpawnBigBattery();
         }
         else
         {
@@ -209,6 +224,8 @@ public class RaCaster : MonoBehaviour
                 {
                     Debug.Log("sleep");
                     StartCoroutine(SleepFadeCountDown());
+                    SoundManager.instance.PlaySfx("UiClick");
+                    robot.StopRobot();
                 }
                 else
                 {
@@ -216,30 +233,36 @@ public class RaCaster : MonoBehaviour
                     if (hit.collider.CompareTag("Next"))
                     {
                         HandleDisplayChange(hit.collider, true); // true = next
+                        SoundManager.instance.PlaySfx("UiClick");
                     }
                     else if (hit.collider.CompareTag("Previous"))
                     {
                         HandleDisplayChange(hit.collider, false); // false = previous
+                        SoundManager.instance.PlaySfx("UiClick");
                     }
                     // เช็ค Tag "ToFarm"
                     else if (hit.collider.CompareTag("ToFarm"))
                     {
                         FastTravelManager.instance.TeleportPlayer(0); // GameObject[0]
+                        SoundManager.instance.PlaySfx("Warp");
                     }
                     // เช็ค Tag "ToBalance"
                     else if (hit.collider.CompareTag("ToBalance"))
                     {
                         FastTravelManager.instance.TeleportPlayer(1); // GameObject[1]
+                        SoundManager.instance.PlaySfx("Warp");
                     }
                     // เช็ค Tag "ToBed"
                     else if (hit.collider.CompareTag("ToBed"))
                     {
                         FastTravelManager.instance.TeleportPlayer(2); // GameObject[2]
+                        SoundManager.instance.PlaySfx("Warp");
                     }
                     else if (hit.collider.CompareTag("SmallBattery"))
                     {
                         if(playerData.Money > 200)
                         {
+                            SoundManager.instance.PlaySfx("UiClick");
                             playerData.SubtractMoney(200);
                             batterymeg.SpawnSmallBattery();
                         }
@@ -252,8 +275,23 @@ public class RaCaster : MonoBehaviour
                     {
                         if (playerData.Money > 500)
                         {
+                            SoundManager.instance.PlaySfx("UiClick");
                             playerData.SubtractMoney(500);
                             batterymeg.SpawnBigBattery();
+                        }
+                        else
+                        {
+                            uiText("You don't have enough money");
+                        }
+                    }
+                    else if (hit.collider.CompareTag("RobotBattery"))
+                    {
+                        if (playerData.Money > 500)
+                        {
+                            SoundManager.instance.PlaySfx("UiClick");
+                            playerData.SubtractMoney(500);
+                            //robot work
+                            robot.SetBattery();
                         }
                         else
                         {
@@ -275,6 +313,7 @@ public class RaCaster : MonoBehaviour
                     {
                         if (playerData.Money >= UpgradePlotCost)
                         {
+                            SoundManager.instance.PlaySfx("Upgrade");
                             playerData.SubtractMoney(UpgradePlotCost);
                             upgradeTarget.Debughit();
                         }
@@ -287,6 +326,7 @@ public class RaCaster : MonoBehaviour
                     {
                         if (playerData.Money >= UpgradePotCost)
                         {
+                            SoundManager.instance.PlaySfx("Upgrade");
                             playerData.SubtractMoney(UpgradePotCost);
                             upgradeTarget.Debughit();
                         }
@@ -307,30 +347,30 @@ public class RaCaster : MonoBehaviour
                 break;
             case 2: // Cure Gun
                 PlayPratical(1);
-
+                SoundManager.instance.PlaySfx("AntiBugs");
                 plantData.HandleCureAction();
                 break;
             case 3: // Harvest Gun
                 PlayPratical(2);
-
+                SoundManager.instance.PlaySfx("Havest");
                 plantData.HandleHarvestAction();
                 break;
             case 4: // Plant Gun
                 if (plantData._plantStage == Plant_Data.PlantStage.None)
                 {
                     PlayPratical(3);
-
+                    SoundManager.instance.PlaySfx("plants");
                     plantData.HandlePlantAction(seedList[seedIndex]);
                 }  
                 break;
             case 5: // Watered Gun
                 PlayPratical(4);
-
+                SoundManager.instance.PlaySfx("Water");
                 plantData.HandleWaterAction();
                 break;
             case 6: // Grow Up Gun
                 PlayPratical(5);
-                
+                SoundManager.instance.PlaySfx("Upgrade");
                 plantData.HandleGrowAction();
                 break;
             default:
@@ -436,6 +476,7 @@ public class RaCaster : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.One)) // A button on Meta Quest controller
         {
+            SoundManager.instance.PlaySfx("UiClick");
             Debug.Log("A button pressed!");
             seedIndex--;
             if (seedIndex < 0)
@@ -445,6 +486,7 @@ public class RaCaster : MonoBehaviour
         }
         else if (OVRInput.GetDown(OVRInput.Button.Two)) // B button on Meta Quest controller
         {
+            SoundManager.instance.PlaySfx("UiClick");
             seedIndex++;
             if (seedIndex >= seedList.Count)
             {
@@ -452,7 +494,7 @@ public class RaCaster : MonoBehaviour
             }
         }
 
-        ui_Text.text = $"Select Seed: {seedList[seedIndex].name} \n Price : {seedList[seedIndex].BuyPrice} \n Plant Time: {seedList[seedIndex].GrowDay}"; ;
+        ui_Text.text = $"Select Seed: {seedList[seedIndex].name} \n Price : {seedList[seedIndex].BuyPrice} \n Plant Time: {seedList[seedIndex].GrowDay} \n Sell : {seedList[seedIndex].SellPrice}"; ;
     }
 
     private void uiText(string text)

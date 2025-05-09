@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbb3c60c4b6aecd49bbe884345309ecc, type: 3}
-  m_Name: Plant01_Seed
+  m_Name: Whisperroot
   m_EditorClassIdentifier: 
   ID: 1
-  Name: Plant01
-  Description: Plant01
+  Name: Whisperroot
+  Description: 'Effect: Reveals hidden secrets'
   GrowDay: 3
-  SellPrice: 150
-  BuyPrice: 100
+  SellPrice: 500
+  BuyPrice: 30
   WaterNeeded: 1
   SeedPrefab: {fileID: 5435379527013311642, guid: 88efd6c2c184917469036d1505a1b511,
     type: 3}

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Plant_Data : MonoBehaviour , CanWatered
 {
+    [SerializeField] CheckRobotWork Robottakecare;
     public enum PlantStage{
         Seed,
         Growing,
@@ -66,7 +67,14 @@ public class Plant_Data : MonoBehaviour , CanWatered
 
     void Update()
     {
-        if(SeedData == null) {
+        if (Robottakecare.TakeCared == true)
+        {
+            Watered();
+            PlantCure();
+            Debug.Log("Take care !!!");
+        }
+
+        if (SeedData == null) {
             GetComponent<BoxCollider>().enabled = true;
             return;
         }
