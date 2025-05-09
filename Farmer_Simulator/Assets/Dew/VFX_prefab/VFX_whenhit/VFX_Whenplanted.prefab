@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2412242339636928039}
   - component: {fileID: 6392879988012485658}
   m_Layer: 0
-  m_Name: water
+  m_Name: PLANT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

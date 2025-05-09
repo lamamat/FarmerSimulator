@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2308870645149814545}
   - component: {fileID: 6582768234669658818}
   m_Layer: 0
-  m_Name: water
+  m_Name: uv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
