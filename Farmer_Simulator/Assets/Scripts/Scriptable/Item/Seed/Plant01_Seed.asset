@@ -33,7 +33,7 @@ MonoBehaviour:
     plantPrefab: {fileID: 4412617178533079231, guid: e9eeef768be9030469e1a6c59623e2df,
       type: 3}
   - stateName: Dead
-    plantPrefab: {fileID: 6818136422910740101, guid: 949b9f8c72667624b886db4e59e6f6b1,
+    plantPrefab: {fileID: 6653735179597347312, guid: d97faac658ef246438ece91e1c50e432,
       type: 3}
   - stateName: Infect
     plantPrefab: {fileID: 2093446846325058150, guid: 9541b6221d06ef64ba8f6db3778309ff,
