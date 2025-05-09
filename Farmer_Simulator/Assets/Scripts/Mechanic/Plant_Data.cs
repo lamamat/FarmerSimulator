@@ -74,19 +74,28 @@ public class Plant_Data : MonoBehaviour , CanWatered
             GetComponent<BoxCollider>().enabled = false;
             return;
         }
+        if(plantIndex >= 2) {
+            plantIndex = 2;
+        }
     }
 
     private void HandleOnNewMorning()
     {
         if(_plantStage == PlantStage.None) return; // No seed planted
         Grow();
-        plantInfect();
     }  
 
     private void Grow(){
-        if(_plantStage == PlantStage.Dead || _plantStage == PlantStage.Harvest) return;
+        if(_plantStage == PlantStage.Dead) {
+            ChangeGameObj(3);
+            return;
+        }
+
+        if(_plantStage == PlantStage.Harvest) return;
 
         if(!isWatered && SeedData.WaterNeeded || _plantStage == PlantStage.Infected) {
+            ChangeGameObj(3);
+
             _plantStage = PlantStage.Dead;
             return;
         }
@@ -97,12 +106,16 @@ public class Plant_Data : MonoBehaviour , CanWatered
         if(_plantStage == PlantStage.Seed){
             _plantStage = PlantStage.Growing;
             plantIndex++;
+            ChangeGameObj(plantIndex);
         }
         else if(_plantStage == PlantStage.Growing && currentDay >= SeedData.GrowDay){
             _plantStage = PlantStage.Harvest;
             plantIndex++;
+            ChangeGameObj(plantIndex);
         }
-        ChangeGameObj(plantIndex);
+        else if(_plantStage == PlantStage.Growing && currentDay <= SeedData.GrowDay){
+            plantInfect();
+        }
 
 
         Debug.Log("Plant is now at stage: " + _plantStage);
@@ -114,6 +127,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
             float randomValue = Random.Range(0f, 1f);
             if(randomValue <= infectChanceRate){
                 isInfected = true;
+                ChangeGameObj(4);
                 Debug.Log("Plant is infected!");
                 _plantStage = PlantStage.Infected;
             }
@@ -129,6 +143,7 @@ public class Plant_Data : MonoBehaviour , CanWatered
         }
         else if(plantPrefab != null){
             if (plantLocation.childCount > 0) {
+                Debug.Log("Destroying old plant prefab: " + plantLocation.GetChild(0).name);
                 Destroy(plantLocation.GetChild(0).gameObject); // Destroy the old plant prefab
                 plantPrefab = null;
             }
@@ -145,6 +160,8 @@ public class Plant_Data : MonoBehaviour , CanWatered
     public void PlantCure(){
         if(_plantStage == PlantStage.Infected){
             isInfected = false;
+            ChangeGameObj(1);
+
             _plantStage = PlantStage.Growing;
         }
     }

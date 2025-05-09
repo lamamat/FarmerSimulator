@@ -316,9 +316,12 @@ public class RaCaster : MonoBehaviour
                 plantData.HandleHarvestAction();
                 break;
             case 4: // Plant Gun
-                PlayPratical(3);
+                if (plantData._plantStage == Plant_Data.PlantStage.None)
+                {
+                    PlayPratical(3);
 
-                plantData.HandlePlantAction(seedList[seedIndex]);
+                    plantData.HandlePlantAction(seedList[seedIndex]);
+                }  
                 break;
             case 5: // Watered Gun
                 PlayPratical(4);
@@ -370,6 +373,11 @@ public class RaCaster : MonoBehaviour
                 }
             break;
             case 2: // Cure Gun
+                if (plantData._plantStage == Plant_Data.PlantStage.None || plantData._plantStage == Plant_Data.PlantStage.Dead) // Add null check for plantData
+                {
+                    uiText("no Plant");
+                }
+                
                 if (plantData.isInfected)
                 {
                     uiText("infected");
@@ -394,7 +402,11 @@ public class RaCaster : MonoBehaviour
                 }
             break;
             case 4: // Plant Gun
-                selectSeed();
+                if (plantData._plantStage == Plant_Data.PlantStage.None)
+                {
+                    selectSeed();
+                }
+                else uiText("Already planted");
             break;
             case 5: // Watered Gun
                 if (plantData._plantStage == Plant_Data.PlantStage.None || plantData._plantStage == Plant_Data.PlantStage.Dead) // Add null check for plantData

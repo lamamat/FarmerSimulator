@@ -93520,6 +93520,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f7b6d6f4707ce9545a9b0bc1ae467055,
         type: 2}
+    - target: {fileID: 2832882293834664693, guid: 084d84731e4a33b4581657644ab8c3b0,
+        type: 3}
+      propertyPath: infectChanceRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6150597512474918770, guid: 084d84731e4a33b4581657644ab8c3b0,
         type: 3}
       propertyPath: m_Name

@@ -31,3 +31,9 @@ MonoBehaviour:
   - stateName: Harvest
     plantPrefab: {fileID: 3892440392155555130, guid: d51c0fb920c4209428b49fdae3651003,
       type: 3}
+  - stateName: Dead
+    plantPrefab: {fileID: 464550123856131976, guid: a0c64dfce173b944d90c9de94cdece96,
+      type: 3}
+  - stateName: Infect
+    plantPrefab: {fileID: 6846149510097814264, guid: 68a30c3f0ad4dd143b76f69f0d4de100,
+      type: 3}
