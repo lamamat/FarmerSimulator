@@ -4,35 +4,38 @@ using UnityEngine;
 
 public class FindDataItem : SingletonClass<FindDataItem>
 {
-    public List<Data> items = new List<Data>();
+    [SerializeField]
+    public List<Data> items = new List<Data>(); // Serialized list for runtime use
 
     public override void Awake()
     {
         base.Awake();
 
-#if UNITY_EDITOR
-        // Find all BaseItem_Scriptable assets in the project
-        string[] guids = AssetDatabase.FindAssets("t:BaseItem_Scriptable");
-        foreach (string guid in guids)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            BaseItem_Scriptable item = AssetDatabase.LoadAssetAtPath<BaseItem_Scriptable>(path);
-            if (item != null)
-            {
-                // Create a new Data object and populate it
-                Data data = new Data
-                {
-                    ID = item.getID(), // Ensure getID() exists in BaseItem_Scriptable
-                    item = item
-                };
+        // #if UNITY_EDITOR
+        // // Find all BaseItem_Scriptable assets in the project
+        // string[] guids = AssetDatabase.FindAssets("t:BaseItem_Scriptable");
+        // foreach (string guid in guids)
+        // {
+        //     string path = AssetDatabase.GUIDToAssetPath(guid);
+        //     BaseItem_Scriptable item = AssetDatabase.LoadAssetAtPath<BaseItem_Scriptable>(path);
+        //     if (item != null)
+        //     {
+        //         // Create a new Data object and populate it
+        //         Data data = new Data
+        //         {
+        //             ID = item.getID(), // Ensure getID() exists in BaseItem_Scriptable
+        //             item = item
+        //         };
 
-                items.Add(data);
-                Debug.Log($"Found BaseItem_Scriptable: {item.name}, ID: {data.ID}");
-            }
-        }
+        //         items.Add(data);
+        //         Debug.Log($"Found BaseItem_Scriptable: {item.name}, ID: {data.ID}");
+        //     }
+        // }
 
+        // #endif
         Debug.Log($"Collected {items.Count} BaseItem_Scriptable items.");
-#endif
+
+        // Log the number of items loaded at runtime
     }
 
     public void AddItemToPlayer(string id, PlayerData player)
