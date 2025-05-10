@@ -66,7 +66,7 @@ public class BatteryManager : MonoBehaviour
         UpdateBatteryActivation(); // เปิด/ปิด Battery.cs ตามลำดับ
     }
 
-    void RemoveLastObject()
+    public void RemoveLastObject()
     {
         if (currentIndex <= 0) return;
 
