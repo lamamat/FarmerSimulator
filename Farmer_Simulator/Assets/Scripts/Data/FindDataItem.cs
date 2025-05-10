@@ -9,7 +9,8 @@ public class FindDataItem : SingletonClass<FindDataItem>
     public override void Awake()
     {
         base.Awake();
-        
+
+#if UNITY_EDITOR
         // Find all BaseItem_Scriptable assets in the project
         string[] guids = AssetDatabase.FindAssets("t:BaseItem_Scriptable");
         foreach (string guid in guids)
@@ -31,6 +32,7 @@ public class FindDataItem : SingletonClass<FindDataItem>
         }
 
         Debug.Log($"Collected {items.Count} BaseItem_Scriptable items.");
+#endif
     }
 
     public void AddItemToPlayer(string id, PlayerData player)
@@ -49,7 +51,8 @@ public class FindDataItem : SingletonClass<FindDataItem>
 }
 
 [System.Serializable]
-public class Data{
+public class Data
+{
     public string ID;
     public BaseItem_Scriptable item;
 }
